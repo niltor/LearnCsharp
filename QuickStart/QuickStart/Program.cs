@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
+
 namespace QuickStart
 {
     class Program
@@ -8,7 +11,9 @@ namespace QuickStart
             //LearnStringOutput();
             //LearnString();
             //LearnNumber();
-            LearnBranchesAndLoops();
+            //LearnBranchesAndLoops();
+            //LearnCollections();
+            LearnClass();
             Console.ReadLine();
         }
 
@@ -134,7 +139,7 @@ What's your name?");
 
             foreach (int item in numbers)
             {
-                Console.Write(item+" ");
+                Console.Write(item + " ");
             }
             Console.WriteLine();
 
@@ -152,9 +157,116 @@ What's your name?");
         /// <summary>
         /// 列表与集合
         /// </summary>
-        static void Collections()
+        static void LearnCollections()
         {
+            //定义List
+            List<string> list = new List<string>();
+            //添加值 
+            list.Add("Black");
+            list.Add("White");
+            list.Add("Orange");
+            list.Add("Red");
+            list.Add("Blue");
 
+            //遍历输出
+            foreach (var item in list)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
+
+
+            //数列示例
+            var fibonacciNumbers = new List<int> { 1, 1 };
+            while (fibonacciNumbers.Count < 20)
+            {
+                //取出最后两个值 
+                var previous = fibonacciNumbers[fibonacciNumbers.Count - 1];
+                var previous2 = fibonacciNumbers[fibonacciNumbers.Count - 2];
+                //添加到列表
+                fibonacciNumbers.Add(previous + previous2);
+            }
+            //遍历输出 
+            foreach (var item in fibonacciNumbers)
+                Console.WriteLine(item);
+        }
+
+
+        static void LearnClass()
+        {
+            //设置英雄库及武器库
+            string[] heroNames = { "钢铁侠", "蝙蝠侠", "美队", "超人" };
+            string[] weapons = { "拖鞋", "拳头", "棍棒", "机枪" };
+
+            //创建英雄队列
+            var heros = new List<Hero>();
+            var random = new Random();
+
+            //英雄登场,配置武器
+            foreach (var item in heroNames)
+            {
+                var hero = new Hero(item, random.Next(60, 120));
+                hero.Weapon = weapons[random.Next(0, 4)];
+
+                heros.Add(hero);
+            }
+
+            //大混战
+            while (heros.Count > 1)
+            {
+                var position = random.Next(0, heros.Count);
+                var target = random.Next(0, heros.Count);
+                if (position != target)
+                {
+                    int damage = random.Next(16, 32);
+                    heros[position].Attack(heros[target].Name, damage);
+                    heros[target].HP = heros[target].HP - damage;
+
+                    if (heros[target].HP < 0)
+                    {
+                        Console.WriteLine(heros[target].Name + "已阵亡");
+                        heros.Remove(heros[target]);
+
+                    }
+                }
+                Thread.Sleep(500);
+            }
+
+            Console.WriteLine($"最后的胜者为:[{heros[0].Name}].还有[{heros[0].HP}]血量");
+        }
+    }
+
+
+    class Hero
+    {
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// 武器
+        /// </summary>
+        public string Weapon { get; set; }
+        /// <summary>
+        /// 血量
+        /// </summary>
+        public int HP { get; set; }
+
+        public Hero(string name, int Hp)
+        {
+            Name = name;
+            HP = Hp;
+            Console.WriteLine($"{name}登场！拥有[{Hp}]血量");
+        }
+
+        /// <summary>
+        /// 攻击
+        /// </summary>
+        /// <param name="target"></param>
+        public void Attack(string target, int damage = 0)
+        {
+            Console.WriteLine($"[{Name}]使用[{Weapon}]攻击了[{target}]，造成了[{damage}]点伤害");
+            Console.WriteLine();
         }
     }
 }
