@@ -201,7 +201,6 @@ What's your name?");
             var heros = new List<Hero>();
             var random = new Random();
 
-
                      
             //英雄登场,配置武器
             foreach (var item in heroNames)
