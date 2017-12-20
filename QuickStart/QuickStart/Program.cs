@@ -150,8 +150,6 @@ What's your name?");
                 Console.Write(j + " ");
                 j--;//i=i-1;
             }
-
-
         }
 
         /// <summary>
@@ -224,12 +222,12 @@ What's your name?");
 
                     if (heros[target].HP < 0)
                     {
-                        Console.WriteLine(heros[target].Name + "已阵亡");
+                        Console.WriteLine($"**[{heros[target].Name}] 已阵亡**");
+                        Console.WriteLine();
                         heros.Remove(heros[target]);
-
                     }
+                    Thread.Sleep(1000);
                 }
-                Thread.Sleep(500);
             }
 
             Console.WriteLine($"最后的胜者为:[{heros[0].Name}].还有[{heros[0].HP}]血量");
@@ -265,7 +263,7 @@ What's your name?");
         /// <param name="target"></param>
         public void Attack(string target, int damage = 0)
         {
-            Console.WriteLine($"[{Name}]使用[{Weapon}]攻击了[{target}]，造成了[{damage}]点伤害");
+            Console.WriteLine($"[{Name}]用({Weapon})攻击 ==> [{target}]，造成了 {damage} 点伤害");
             Console.WriteLine();
         }
     }
