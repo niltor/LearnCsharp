@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace QuickStart
@@ -200,6 +201,8 @@ What's your name?");
             var heros = new List<Hero>();
             var random = new Random();
 
+
+                     
             //英雄登场,配置武器
             foreach (var item in heroNames)
             {
@@ -266,5 +269,7 @@ What's your name?");
             Console.WriteLine($"[{Name}]用({Weapon})攻击 ==> [{target}]，造成了 {damage} 点伤害");
             Console.WriteLine();
         }
+     
+        
     }
 }
