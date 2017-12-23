@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 
 namespace QuickStart
@@ -9,15 +8,17 @@ namespace QuickStart
     {
         static void Main(string[] args)
         {
-            //LearnStringOutput();
-            //LearnString();
-            //LearnNumber();
-            //LearnBranchesAndLoops();
-            //LearnCollections();
-            LearnClass();
-            Console.ReadLine();
-        }
+            var cat = new Cat();
+            cat.Eat("甜食");
 
+            var person = new ChinaCitizen();
+            person.VisitChinaInternet();
+
+            var person1 = new EarthCitizen();
+            person1.VisitInternet();
+
+        }
+        #region 快速入门
         /// <summary>
         /// 1. 字符串输入输出
         /// </summary>
@@ -190,7 +191,6 @@ What's your name?");
                 Console.WriteLine(item);
         }
 
-
         static void LearnClass()
         {
             //设置英雄库及武器库
@@ -201,7 +201,7 @@ What's your name?");
             var heros = new List<Hero>();
             var random = new Random();
 
-                     
+
             //英雄登场,配置武器
             foreach (var item in heroNames)
             {
@@ -234,9 +234,9 @@ What's your name?");
 
             Console.WriteLine($"最后的胜者为:[{heros[0].Name}].还有[{heros[0].HP}]血量");
         }
+        #endregion
     }
-
-
+    #region 英雄类
     class Hero
     {
         /// <summary>
@@ -268,7 +268,7 @@ What's your name?");
             Console.WriteLine($"[{Name}]用({Weapon})攻击 ==> [{target}]，造成了 {damage} 点伤害");
             Console.WriteLine();
         }
-     
-        
     }
+
+    #endregion
 }
