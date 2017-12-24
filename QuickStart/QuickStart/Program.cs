@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace QuickStart
@@ -8,14 +11,14 @@ namespace QuickStart
     {
         static void Main(string[] args)
         {
-            var cat = new Cat();
-            cat.Eat("甜食");
+            //var cat = new Cat();
+            //cat.Eat("甜食");
 
-            var person = new ChinaCitizen();
-            person.VisitChinaInternet();
+            //var person = new ChinaCitizen();
+            //person.VisitChinaInternet();
 
-            var person1 = new EarthCitizen();
-            person1.VisitInternet();
+            //var person1 = new EarthCitizen();
+            //person1.VisitInternet();
 
         }
         #region 快速入门
