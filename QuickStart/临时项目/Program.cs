@@ -1,9 +1,6 @@
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Jpeg;
-using SixLabors.ImageSharp.Processing;
-using SixLabors.Primitives;
 using System;
 using System.IO;
+using System.Text;
 
 namespace 临时项目
 {
@@ -11,44 +8,51 @@ namespace 临时项目
     {
         static void Main(string[] args)
         {
-            //1 获取目录下所有文件信息
-            var dirs = new DirectoryInfo(@"e:\images");//原目录
-            var outDirs = Directory.CreateDirectory(@"e:\images\output");//输出目录
-            var files = dirs.GetFiles("*.*");
+            //创建文件，设置编码保存
+            string content = "编码";
+            string path = @"e:\output.txt";
+            // 更多的编码支持，需要先注册
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            var outputInfo = "";//记录转化内容
+            //定义编码
+            var utf8 = Encoding.UTF8;
+            var gbk = Encoding.GetEncoding("GBK");
 
-            //2 遍历文件，压缩转化输出 
-            int i = 1;
-            foreach (var file in files)
+            Console.OutputEncoding = utf8;
+            //以GBK编码保存文件
+            File.WriteAllText(path, content, gbk);
+            //读取文件内容
+            string readContent = File.ReadAllText(path, gbk);
+
+            // 不同编码的bytes输出
+            // 1 源字符转字节
+            var gbkBytes = gbk.GetBytes(readContent);
+            Console.WriteLine("源文件字节");
+            Print(gbkBytes);// 177 224 194 235
+            // 2 编码转换，转换字节到新编码形式
+            var utf8Bytes = Encoding.Convert(gbk, utf8, gbkBytes);
+            // 3 将新字节还原到目标编码
+            var utfContent = Encoding.UTF8.GetString(utf8Bytes);
+            Console.WriteLine("utf8的字节:");
+            Print(Encoding.UTF8.GetBytes(utfContent));// 231 188 150 231 160 129
+
+            // 直接读字节
+            var binary = File.ReadAllBytes(path);
+            Print(binary);
+        }
+
+        /// <summary>
+        /// 输出字节形式
+        /// </summary>
+        /// <param name="bytes"></param>
+        static void Print(byte[] bytes)
+        {
+            foreach (var item in bytes)
             {
-                //读入图片文件
-                using (var img = Image.Load(file.FullName))
-                {
-                    //设置输出选项
-                    Configuration.Default.SetEncoder(ImageFormats.Jpeg, new JpegEncoder()
-                    {
-                        Quality = 85,
-                        IgnoreMetadata = true,
-                    });
-                    var newImg = img.Clone(ctx => ctx.Resize(new ResizeOptions
-                    {
-                        Size = new Size((int)(img.Width / 1.5), (int)(img.Height / 1.5)),
-                        Mode = ResizeMode.BoxPad
-                    }));
-
-                    //构造新文件名称
-                    var fileName = Path.Combine(outDirs.FullName, DateTime.Now.ToString("MMdd") + $"-myphotos{i}.jpg");
-                    //保存副本到新文件
-                    newImg.Save(fileName);
-                    i++;
-                    outputInfo += $"原文件:{file.FullName} => 新文件:{fileName}\r\n";
-                    Console.WriteLine(outputInfo);
-                }
+                Console.Write(item);
+                Console.Write(" ");
             }
-            //生成操作记录
-            File.WriteAllText(@"e:\images\output.txt", outputInfo);
-            Console.WriteLine("完成任务");
+            Console.WriteLine();
         }
     }
 }
