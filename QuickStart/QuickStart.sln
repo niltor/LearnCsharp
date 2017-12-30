@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "临时项目", "临时项�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "文件操作", "文件操作\文件操作.csproj", "{2BC3651E-1C66-4097-A54A-597A6875A8B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "字符编码", "字符编码\字符编码.csproj", "{92FC7BB2-BF56-4021-924E-1806B533A658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "字符编码", "字符编码\字符编码.csproj", "{92FC7BB2-BF56-4021-924E-1806B533A658}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq示例", "Linq示例\Linq示例.csproj", "{CFCFC045-5E68-4362-8ECA-297500ACA7E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{92FC7BB2-BF56-4021-924E-1806B533A658}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92FC7BB2-BF56-4021-924E-1806B533A658}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92FC7BB2-BF56-4021-924E-1806B533A658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFCFC045-5E68-4362-8ECA-297500ACA7E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFCFC045-5E68-4362-8ECA-297500ACA7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFCFC045-5E68-4362-8ECA-297500ACA7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFCFC045-5E68-4362-8ECA-297500ACA7E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
