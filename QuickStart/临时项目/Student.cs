@@ -22,5 +22,6 @@ namespace 临时项目
         /// 成绩
         /// </summary>
         public Score Score { get; set; }
+
     }
 }
