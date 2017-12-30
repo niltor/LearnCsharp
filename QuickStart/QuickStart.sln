@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "字符编码", "字符编�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq示例", "Linq示例\Linq示例.csproj", "{CFCFC045-5E68-4362-8ECA-297500ACA7E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "http请求", "http请求\http请求.csproj", "{1E776056-3229-4F7B-BB1B-869BAEFC0747}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{CFCFC045-5E68-4362-8ECA-297500ACA7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFCFC045-5E68-4362-8ECA-297500ACA7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFCFC045-5E68-4362-8ECA-297500ACA7E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E776056-3229-4F7B-BB1B-869BAEFC0747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E776056-3229-4F7B-BB1B-869BAEFC0747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E776056-3229-4F7B-BB1B-869BAEFC0747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E776056-3229-4F7B-BB1B-869BAEFC0747}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

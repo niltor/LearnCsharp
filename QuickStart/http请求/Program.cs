@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 
-namespace 临时项目
+namespace http请求
 {
     class Program
     {
@@ -78,7 +76,6 @@ namespace 临时项目
                     Console.WriteLine(httpResponse.StatusCode + httpResponse.RequestMessage.ToString());
                 }
             }
-
         }
     }
 }
