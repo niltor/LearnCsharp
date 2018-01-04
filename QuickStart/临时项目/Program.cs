@@ -1,53 +1,74 @@
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
-using System.IO;
-using System.Text;
-using System.Xml.Linq;
-using System.Xml.Serialization;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace 临时项目
 {
     class Program
     {
+        static MyContext _context = MyContext.GetContext();
+
         static void Main(string[] args)
         {
-            // 创建对象
-            var course = new Course()
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
-                Name = "C#快速入门",
-                Blogs = new Blog[]
+                Formatting = Newtonsoft.Json.Formatting.None,
+                ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            };
+
+            //Add();
+            Select();
+            Console.WriteLine("完成");
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// 添加
+        /// </summary>
+        static void Add()
+        {
+            // 创建用户
+            var user = new User
+            {
+                Email = "abc@outlook.com",
+                Name = "NilTor",
+                Password = "123123"
+            };
+            // 添加数据
+            var blogs = new List<Blog>()
+            {
+                new Blog
                 {
-                    new Blog
-                    {
-                        Title= "序列化",
-                        Content = "C#序列化内容"
-                    },
-                    new Blog
-                    {
-                        Title="Linq",
-                        Content= "如何使用Linq"
-                    }
+                    Author = user,
+                    Title = "博客",
+                    Content = "内容"
+                },
+                new Blog
+                {
+                    Author = user,
+                    Title = "标题2",
+                    Content = "博客内容2"
                 }
             };
 
+            _context.Add(user);
+            _context.AddRange(blogs);
+            var re = _context.SaveChanges();
+            Console.WriteLine(re);
+        }
 
-            // 序列化,object->xml
-            var ser = new XmlSerializer(typeof(Course));
-            var writer = new StringWriter();
-            ser.Serialize(writer, course);
-            File.WriteAllText("course.xml", writer.ToString(), Encoding.Unicode);
+        /// <summary>
+        /// 查询
+        /// </summary>
+        static void Select()
+        {
+            var data = _context.User
+                .Include(m => m.Blogs)
+                .ToList();
 
-            // 反序列化，xml->object
-            var fileStream = new FileStream("course.xml", FileMode.Open);
-            var course1 = ser.Deserialize(fileStream);
-
-            // 序列化,object->json
-            var json = JsonConvert.SerializeObject(course);
-            Console.WriteLine(json);
-
-            // 反序列化,json->object
-            var course2 = JsonConvert.DeserializeObject<Course>(json);
-            Console.ReadLine();
+            Console.WriteLine(JsonConvert.SerializeObject(data));
         }
     }
 }

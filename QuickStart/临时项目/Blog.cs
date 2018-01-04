@@ -1,27 +1,31 @@
-using System.Xml.Serialization;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace 临时项目
 {
+
     /// <summary>
-    /// 博文
+    /// 博客对象
     /// </summary>
-    public class Blog
+    public class Blog : Model
     {
         /// <summary>
         /// 标题
         /// </summary>
+        [MaxLength(32)]
         public string Title { get; set; }
 
         /// <summary>
         /// 内容
         /// </summary>
-        //[XmlIgnore]
+        [MaxLength(2000)]
         public string Content { get; set; }
 
         /// <summary>
         /// 作者
         /// </summary>
-        [XmlAttribute(AttributeName = "author")]
-        public string Author { get; set; } = "NilTor";
+        public User Author { get; set; }
     }
 }
