@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Course xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>C#快速入门</Name>
+  <Blogs>
+    <Blog author="NilTor">
+      <Title>序列化</Title>
+      <Content>C#序列化内容</Content>
+    </Blog>
+    <Blog author="NilTor">
+      <Title>Linq</Title>
+      <Content>如何使用Linq</Content>
+    </Blog>
+  </Blogs>
+</Course>
