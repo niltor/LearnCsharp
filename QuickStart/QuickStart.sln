@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "http请求", "http请求\ht
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "多线程与异步", "多线程与异步\多线程与异步.csproj", "{2B30DD8D-E3B4-4086-97C9-6B1B389C7B23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "序列化", "序列化\序列化.csproj", "{1E4717F3-A871-4239-A4BF-4639E46E5129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "序列化", "序列化\序列化.csproj", "{1E4717F3-A871-4239-A4BF-4639E46E5129}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "数据库", "数据库\数据库.csproj", "{626FBC32-5CC7-42DC-8AF1-5EFE664975BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "database", "database\database.csproj", "{88F30F0D-06DE-4972-A5E8-EED9C4265F4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +65,10 @@ Global
 		{1E4717F3-A871-4239-A4BF-4639E46E5129}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E4717F3-A871-4239-A4BF-4639E46E5129}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E4717F3-A871-4239-A4BF-4639E46E5129}.Release|Any CPU.Build.0 = Release|Any CPU
-		{626FBC32-5CC7-42DC-8AF1-5EFE664975BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{626FBC32-5CC7-42DC-8AF1-5EFE664975BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{626FBC32-5CC7-42DC-8AF1-5EFE664975BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{626FBC32-5CC7-42DC-8AF1-5EFE664975BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88F30F0D-06DE-4972-A5E8-EED9C4265F4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F30F0D-06DE-4972-A5E8-EED9C4265F4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F30F0D-06DE-4972-A5E8-EED9C4265F4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F30F0D-06DE-4972-A5E8-EED9C4265F4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
