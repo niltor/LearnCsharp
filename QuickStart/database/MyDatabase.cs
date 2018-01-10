@@ -21,7 +21,7 @@ namespace database
         {
             if (database == null)
             {
-                return new MyDatabase();
+                database = new MyDatabase();
             }
             return database;
         }
