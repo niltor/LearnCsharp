@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 
 namespace Linq示例
 {
@@ -9,44 +11,33 @@ namespace Linq示例
     {
         static void Main(string[] args)
         {
-            #region 数组操作
-            var numbers = new int[] { 1, 31, 22, 4, 229, 84, 8, 23 };
-            Console.WriteLine("原数组：");
-            WriteArray(numbers);
+            CitySample();
+            Console.ReadLine();
+        }
 
-            // 取最大值
-            int max = numbers.Max();
 
-            Console.WriteLine("最大值为:" + max);
+        static void CitySample()
+        {
+            // 读取文件
+            var json = File.ReadAllText("./citys.json");
+            var provinces = JsonSerializer.Deserialize<List<Province>>(json);
 
-            // 取第三大的值
-            //int thirdMax = numbers.OrderByDescending(m => m)
-            //    .Skip(2)
-            //    .First();
+            // 查询一共有多少个市区
+            var count = provinces.Select(p => p.City.Count()).Sum();
+            Console.WriteLine("地市共有:" + count);
+            count = provinces.SelectMany(p => p.City.Select(c => c.Area.Count())).Sum();
+            Console.WriteLine("区县共有:" + count);
 
-            var query = from thidmax in numbers
-                           orderby thidmax descending
-                           select thidmax;
+            // 根据市数量排序
 
-            var thirdMax = query.Skip(2).First();
+            // 分组 区/市/县
+        }
 
-            Console.WriteLine("第三大的数是" + thirdMax);
-
-            // 求总和
-            int sum = numbers.Sum();
-            Console.WriteLine("总和为:" + sum);
-
-            // 条件筛选，取所有奇数，并按从小到大排列
-            var odds = numbers.Where(number => number % 2 == 1)
-                .OrderBy(number => number)
-                .ToArray();
-            WriteArray(odds);
-            #endregion
-
+        static void Sample()
+        {
             #region 对象实例Linq
             // 初始化数据
             var students = InitData();
-
             // 找出总分最高的学生
             var student = students.Select(s =>
             {
@@ -98,7 +89,6 @@ namespace Linq示例
             }
             #endregion
         }
-
         /// <summary>
         /// 初始化数据
         /// </summary>
