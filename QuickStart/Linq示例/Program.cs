@@ -10,7 +10,7 @@ namespace Linq示例
     class Program
     {
         static void Main(string[] args)
-        {
+         {
             CitySample();
             Console.ReadLine();
         }
@@ -29,8 +29,35 @@ namespace Linq示例
             Console.WriteLine("区县共有:" + count);
 
             // 根据市数量排序
+            provinces = provinces.OrderBy(p => p.City.Count).ToList();
 
             // 分组 区/市/县
+            var group = provinces.SelectMany(p => p.City.SelectMany(c => c.Area))
+                            .GroupBy(a => a.Last());
+            foreach (var item in group)
+            {
+                System.Console.WriteLine(item.Key + ":" + item.Count());
+            }
+
+            // 搜索某个区县的路径
+            var citys = provinces.SelectMany(provinces => provinces.City,
+                (p, c) => new
+                {
+                    pName = p.Name,
+                    cName = c.Name,
+                    c.Area
+                });
+
+            var areas = citys.SelectMany(c => c.Area,
+                (c, a) => new
+                {
+                    c.pName,
+                    c.cName,
+                    Name = a
+                }).Where(c => c.Name == "梁山县")
+                .ToList();
+
+            System.Console.WriteLine("====");
         }
 
         static void Sample()
