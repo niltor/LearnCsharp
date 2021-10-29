@@ -1,15 +1,33 @@
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
-using SixLabors.Primitives;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace 文件操作
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
+        {
+            // 读取文件信息
+            var helper = new FileHelper();
+            await helper.ReadFileAsync(Path.Combine("./asserts", "utf8.ccc"));
+            await helper.ReadFileAsync(Path.Combine("./asserts", "BG2312.ccc"));
+
+            await helper.ReadFileAsync(Path.Combine("./asserts", "black.png"));
+            await helper.ReadFileAsync(Path.Combine("./asserts", "blackdot.png"));
+
+            //await helper.ReadFileAsync(Path.Combine("./asserts", "black.jpg"));
+            //await helper.ReadFileAsync(Path.Combine("./asserts", "blackdot.jpg"));
+
+
+            await helper.InsertInformationAsync(Path.Combine("./asserts", "black.png"), "自由", 20);
+
+        }
+        static void Example()
         {
 
             //1 获取目录下所有文件信息
@@ -26,13 +44,6 @@ namespace 文件操作
                 //读入图片文件
                 using (var img = Image.Load(file.FullName))
                 {
-                    //设置输出选项
-                    Configuration.Default.SetEncoder(ImageFormats.Jpeg, new JpegEncoder()
-                    {
-                        Quality = 85,
-                        IgnoreMetadata = true,
-                    });
-
                     var newImg = img.Clone(ctx => ctx.Resize(new ResizeOptions
                     {
                         Size = new Size((int)(img.Width / 1.5), (int)(img.Height / 1.5)),
@@ -45,7 +56,7 @@ namespace 文件操作
                     newImg.Save(fileName);
                     i++;
                     outputInfo += $"原文件:{file.FullName} => 新文件:{fileName}\r\n";
-               
+
                 }
             }
             //生成操作记录
