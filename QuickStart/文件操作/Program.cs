@@ -14,17 +14,26 @@ namespace 文件操作
         {
             // 读取文件信息
             var helper = new FileHelper();
-            await helper.ReadFileAsync(Path.Combine("./asserts", "utf8.ccc"));
-            await helper.ReadFileAsync(Path.Combine("./asserts", "BG2312.ccc"));
 
-            await helper.ReadFileAsync(Path.Combine("./asserts", "black.png"));
-            await helper.ReadFileAsync(Path.Combine("./asserts", "blackdot.png"));
+            var content = "有内鬼，取消交易";
+            await helper.InsertInformationAsync(Path.Combine("./asserts", "black.png"), content, 100);
+            //await helper.ReadBytes(Path.Combine("./asserts", "utf8.ccc"));    
+            //await helper.ReadBytes(Path.Combine("./asserts", "BG2312.ccc"));
+
+
+            //var bytes = new byte[] { 239, 187 };
+            //File.WriteAllBytes("./asserts/output.txt", bytes);
+
+            //await helper.ReadFileAsync(Path.Combine("./asserts", "utf8.ccc"));
+            //await helper.ReadFileAsync(Path.Combine("./asserts", "utf8-bom.ccc"));
+            //await helper.ReadFileAsync(Path.Combine("./asserts", "BG2312.ccc"));
+
+            //await helper.ReadFileAsync(Path.Combine("./asserts", "black.png"));
+            //await helper.ReadFileAsync(Path.Combine("./asserts", "blackdot.png"));
 
             //await helper.ReadFileAsync(Path.Combine("./asserts", "black.jpg"));
             //await helper.ReadFileAsync(Path.Combine("./asserts", "blackdot.jpg"));
-
-
-            await helper.InsertInformationAsync(Path.Combine("./asserts", "black.png"), "自由", 20);
+            //await helper.InsertInformationAsync(Path.Combine("./asserts", "black.png"), "自由", 20);
 
         }
         static void Example()
